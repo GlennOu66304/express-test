@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>qr code show in front end</title>
+</head>
+
+<body>
+
+    <img src="http://localhost:3000/images/turquoise_functional.png" alt="">
+    <button onclick=downloadImg(href)> <a href="http://localhost:3000/images/turquoise_functional.png" download>click me
+            to
+            download
+            the qr code </a></button>
+</body>
+
+<script>
+
+    // 多种方式实现前端图片下载
+    // https://juejin.cn/post/6856574401408679944#heading-6
+    const downloadImg = async (url) => {
+        fetch(url)
+            .then(resp => resp.blob())
+            .then(blobobject => {
+                const blob = window.URL.createObjectURL(blobobject);
+                const anchor = document.createElement('a');
+                anchor.style.display = 'none';
+                anchor.href = blob;
+                anchor.download = "name.png"";
+                document.body.appendChild(anchor);
+                anchor.click();
+                window.URL.revokeObjectURL(blob);
+            })
+            .catch(() => console.log('An error in downloadin gthe file sorry'));
+    }
+    }
+</script>
+
+</html>
